@@ -30,7 +30,7 @@ container.append(
 		grid.className = "grid"
 		grid.append(
 			...month.map((ofYear, ofMonth) => {
-				const ofWeek = new Date(year, m, ofMonth).getUTCDay()
+				const ofWeek = new Date(year, m, ofMonth + 1).getUTCDay()
 
 				const cell = document.createElement("div")
 				cell.className = `day${ofWeek > 4 ? " weekend" : ""}`
