@@ -21,6 +21,7 @@ container.append(
 		monthContainer.className = "month"
 
 		const title = document.createElement("h2")
+		title.className = "title"
 		title.innerText = new Date(year, m, 2).toLocaleString("default", {
 			month: "long",
 		})
