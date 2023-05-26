@@ -17,11 +17,13 @@ document.querySelector(".calendar").append(
 		grid.append(
 			...[...Array(new Date(year, month + 1, 0).getDate())].map(
 				(_, ofMonth) => {
-					const ofWeek = new Date(year, month, ofMonth + 1).getUTCDay()
+					const date = new Date(`${year}-${month + 1}-${ofMonth + 1}`)
+					const ofWeek = date.getUTCDay()
+					const isWeekend = ofWeek === 0 || ofWeek === 6
 
 					const cell = document.createElement("div")
-					cell.className = `day${ofWeek > 4 ? " weekend" : ""}`
-					cell.innerText = ++day
+					cell.className = `day${isWeekend ? " weekend" : ""}`
+					cell.innerText = date.getUTCDate()
 					return cell
 				}
 			)
