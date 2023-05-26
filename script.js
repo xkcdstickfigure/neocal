@@ -8,16 +8,16 @@ document.querySelector(".calendar").append(
 
 		const title = document.createElement("h2")
 		title.className = "title"
-		title.innerText = new Date(year, month, 2).toLocaleString("default", {
+		title.innerText = new Date(year, month, 1).toLocaleString("default", {
 			month: "long",
 		})
 
 		const grid = document.createElement("div")
 		grid.className = "grid"
 		grid.append(
-			...[...Array(new Date(year, month + 1, 0).getDate())].map(
+			...[...Array(new Date(Date.UTC(year, month + 1, 0)).getDate())].map(
 				(_, ofMonth) => {
-					const date = new Date(`${year}-${month + 1}-${ofMonth + 1}`)
+					const date = new Date(Date.UTC(year, month, ofMonth + 1))
 					const ofWeek = date.getUTCDay()
 					const isWeekend = ofWeek === 0 || ofWeek === 6
 
