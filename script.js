@@ -1,4 +1,4 @@
-const year = new Date().getUTCFullYear()
+const year = new Date().getFullYear()
 const calendar = []
 
 let day = 1
