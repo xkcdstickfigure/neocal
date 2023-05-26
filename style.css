@@ -1,3 +1,18 @@
+.calendar {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: 32px 32px 32px 32px 32px;
+}
+
+.day {
+	height: 32px;
+	background: gray;
+}
+
 .weekend {
 	background: red;
 }

@@ -8,52 +8,37 @@ while (date.getFullYear() === year) {
 	const month = date.getUTCMonth()
 	if (!calendar[month]) calendar[month] = []
 
-	const row = Math.floor((date.getUTCDate() - 1) / 5)
-	if (!calendar[month][row]) calendar[month][row] = []
-
-	calendar[month][row].push({
-		ofYear: day,
-		ofMonth: date.getUTCDate(),
-	})
+	calendar[month].push(day)
 
 	day++
 	date = new Date(date.getTime() + 24 * 60 * 60 * 1000)
 }
 
-const container = document.querySelector(".container")
+const container = document.querySelector(".calendar")
 container.append(
 	...calendar.map((month, m) => {
 		const monthContainer = document.createElement("div")
 		monthContainer.className = "month"
 
-		const titleRow = document.createElement("tr")
-		titleRow.className = "title"
-		const titleCell = document.createElement("td")
-		titleCell.colSpan = 5
-		titleCell.innerText = new Date(year, m, 2).toLocaleString("default", {
+		const title = document.createElement("h2")
+		title.innerText = new Date(year, m, 2).toLocaleString("default", {
 			month: "long",
 		})
-		titleRow.append(titleCell)
 
-		const rows = month.map((row) => {
-			const rowContainer = document.createElement("tr")
-			rowContainer.className = "row"
+		const grid = document.createElement("div")
+		grid.className = "grid"
+		grid.append(
+			...month.map((ofYear, ofMonth) => {
+				const ofWeek = new Date(year, m, ofMonth).getUTCDay()
 
-			rowContainer.append(
-				...row.map((day) => {
-					const ofWeek = new Date(year, m, day.ofMonth).getUTCDay()
+				const cell = document.createElement("div")
+				cell.className = `day${ofWeek > 4 ? " weekend" : ""}`
+				cell.innerText = ofYear
+				return cell
+			})
+		)
 
-					const cell = document.createElement("td")
-					cell.className = `cell${ofWeek > 4 ? " weekend" : ""}`
-					cell.innerText = day.ofYear
-					return cell
-				})
-			)
-
-			return rowContainer
-		})
-
-		monthContainer.append(titleRow, ...rows)
+		monthContainer.append(title, grid)
 		return monthContainer
 	})
 )
