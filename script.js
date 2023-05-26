@@ -23,7 +23,7 @@ document.querySelector(".calendar").append(
 
 					const cell = document.createElement("div")
 					cell.className = `day${isWeekend ? " weekend" : ""}`
-					cell.innerText = date.getUTCDate()
+					cell.innerText = ++day
 					return cell
 				}
 			)
