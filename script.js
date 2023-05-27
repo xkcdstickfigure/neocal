@@ -15,7 +15,7 @@ document.querySelector(".calendar").append(
 		const grid = document.createElement("div")
 		grid.className = "grid"
 		grid.append(
-			...[...Array(new Date(Date.UTC(year, month + 1, 0)).getDate())].map(
+			...[...Array(new Date(year, month + 1, 0).getDate())].map(
 				(_, ofMonth) => {
 					const date = new Date(Date.UTC(year, month, ofMonth + 1))
 					const ofWeek = date.getUTCDay()
